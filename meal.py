@@ -10,7 +10,7 @@ def print_meals_by_price():
     cursor.execute('select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id order by foods.price;')
     result = cursor.fetchall()
     for i in result:
-        print(f"{i[0]:<35}  {i[1]:<6}    {i[3]:<20}")
+        print(f"|{i[0]:<25} | {i[1]:<6} | {i[2]:<15} | {i[3]:<14}|")
     db.close()  # close the DB that opened
 
 print_meals_by_price()
