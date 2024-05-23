@@ -35,8 +35,11 @@ while True:
     if user_input == '1':
         print_meals_by_price()
     elif user_input == '2':
-        type = input("Please choose type:\n1. main course\n2. cold dish\n3. dessert\n4. drinks\n")
-        print_one_type_by_price(type)
+        while True:
+            type = input("Please choose type:\n1. main course\n2. cold dish\n3. dessert\n4. drinks\n5. back\n")
+            if type == '5':
+                break
+            print_one_type_by_price(type)
     elif user_input == '3':
         break
     else:
