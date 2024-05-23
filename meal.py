@@ -18,8 +18,10 @@ def print_meals_by_price():
 
 
 while True:
-    user_input = input("What do you want to do?\n1. print all meals\n")
+    user_input = input("What do you want to do?\n1. print all meals\n2. exit\n")
     if user_input == '1':
         print_meals_by_price()
+    elif user_input == '2':
+        break
     else:
         print("That is not a option.")
