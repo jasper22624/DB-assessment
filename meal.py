@@ -1,4 +1,4 @@
-#22/05/24 A program read the meal.db  by Japser Guo
+# 22/05/24 A program read the meal.db  by Japser Guo
 
 # imports
 import sqlite3
@@ -16,4 +16,10 @@ def print_meals_by_price():
     print("|__________________________|________|______________________|_______________|")
     db.close()  # close the DB that opened
 
-print_meals_by_price()
+
+while True:
+    user_input = input("What do you want to do?\n1. print all meals\n")
+    if user_input == '1':
+        print_meals_by_price()
+    else:
+        print("That is not a option.")
