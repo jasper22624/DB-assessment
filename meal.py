@@ -31,11 +31,11 @@ def print_one_type_by_price(type):
 
 
 while True:
-    user_input = input("What do you want to do?\n1. print all meals\n2. exit\n")
+    user_input = input("What do you want to do?\n1. print all meals\n2. print one type of meal\n3. exit\n")
     if user_input == '1':
         print_meals_by_price()
     elif user_input == '2':
-        type = input("choose type")
+        type = input("Please choose type:\n1. main course\n2. cold dish\n3. dessert\n4. drinks\n")
         print_one_type_by_price(type)
     elif user_input == '3':
         break
