@@ -46,7 +46,14 @@ while True:
             elif type == '6':
                 user_input = '3'
                 break
-            print_one_type_by_price(type)
+            else: 
+                try:
+                    if 1 <= int(type) <= 4:
+                        print_one_type_by_price(type)
+                    else:
+                        print("That is not a option.")
+                except ValueError:
+                    print("That is not a option.")
     elif user_input == '3':
         break
     else:
