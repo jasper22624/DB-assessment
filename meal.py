@@ -46,7 +46,7 @@ while True:
             elif type == '6':
                 user_input = '3'
                 break
-            else: 
+            else:
                 try:
                     if 1 <= int(type) <= 4:
                         print_one_type_by_price(type)
