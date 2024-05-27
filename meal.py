@@ -41,14 +41,14 @@ while True:
     elif user_input == '2':
         while True:
             type = input("Please choose type:\n1. main course\n2. cold dish\n3. dessert\n4. drinks\n5. back\n6. exit program\n")
-            if type == '5':
+            if type == '5':  # 5. back
                 break
-            elif type == '6':
-                user_input = '3'
+            elif type == '6':  # 6. exit program
+                user_input = '3'  # make user_input=3, so the progrm will quit
                 break
             else:
-                try:
-                    if 1 <= int(type) <= 4:
+                try:  # because there are int here, so we need a try
+                    if 1 <= int(type) <= 4:  # check is the input a good value
                         print_one_type_by_price(type)
                     else:
                         print("That is not an option.")
