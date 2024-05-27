@@ -51,10 +51,10 @@ while True:
                     if 1 <= int(type) <= 4:
                         print_one_type_by_price(type)
                     else:
-                        print("That is not a option.")
+                        print("That is not an option.")
                 except ValueError:
-                    print("That is not a option.")
+                    print("That is not an option.")
     elif user_input == '3':
         break
     else:
-        print("That is not a option.")
+        print("That is not an option.")
