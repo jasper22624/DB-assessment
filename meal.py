@@ -70,16 +70,16 @@ while True:
     elif user_input == '3':
         min = input("enter the min price, or press enter to skip\n")
         max = input("enter the max price, or press enter to skip\n")
-        if min == '':
+        if min == '':  # no input means skip so we need to set a range
             min = '0'
         if max == '':
             max = '1023'
         try:
-            max = int(max)
+            max = int(max)  # we need to turn it into int to compare
             min = int(min)
-            if max <= min:
+            if max <= min:  # max should be greater than min
                 print("Price out of range.")
-            elif min < 0 or min > 19:
+            elif min < 0 or min > 19:  # we don't have that expensive meals
                 print("Price out of range.")
             else:
                 print_meals_in_range(min, max)
