@@ -32,6 +32,19 @@ def print_one_type_by_price(type):
     db.close()  # close the DB that opened
 
 
+def print_meals_in_range(min,max):
+    db = sqlite3.connect('meal.db')
+    cursor = db.cursor()
+    cursor.execute(f"select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id where price <= {max} and price >= {min} order by foods.price;")
+    result = cursor.fetchall()
+    print(" __________________________________________________________________________")
+    print(f"|{'name':<25} | {'price':<6} | {'special requirements':<20} | {'types':<14}|")
+    for i in result:
+        print(f"|{i[0]:<25} | {i[1]:<6} | {i[2]:<20} | {i[3]:<14}|")
+    print("|__________________________|________|______________________|_______________|")
+    db.close()  # close the DB that opened
+
+
 while True:
     if user_input == '3':
         break
