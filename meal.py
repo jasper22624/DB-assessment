@@ -57,7 +57,7 @@ while True:
             if type == '5':  # 5. back
                 break
             elif type == '6':  # 6. exit program
-                user_input = '3'  # make user_input=3, so the progrm will quit
+                user_input = '4'  # make user_input=4, so the progrm will quit
                 break
             else:
                 try:  # because there are int here, so we need a try
@@ -74,7 +74,17 @@ while True:
             min = '0'
         if max == '':
             max = '1023'
-        print_meals_in_range(min, max)
+        try:
+            max = int(max)
+            min = int(min)
+            if max <= min:
+                print("Price out of range.")
+            elif min < 0 or min > 19:
+                print("Price out of range.")
+            else:
+                print_meals_in_range(min, max)
+        except ValueError:
+            print("Invalid input.")
     elif user_input == '4':
         break
     else:
