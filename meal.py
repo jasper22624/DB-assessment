@@ -70,6 +70,10 @@ while True:
     elif user_input == '3':
         min = input("enter the min price, or press enter to skip\n")
         max = input("enter the max price, or press enter to skip\n")
+        if min == '':
+            min = '0'
+        if max == '':
+            max = '1023'
         print_meals_in_range(min, max)
     elif user_input == '4':
         break
