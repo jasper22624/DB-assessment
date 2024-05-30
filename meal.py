@@ -32,7 +32,7 @@ def print_one_type_by_price(type):
     db.close()  # close the DB that opened
 
 
-def print_meals_in_range(min,max):
+def print_meals_in_range(min, max):
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
     cursor.execute(f"select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id where price <= {max} and price >= {min} order by foods.price;")
@@ -46,9 +46,9 @@ def print_meals_in_range(min,max):
 
 
 while True:
-    if user_input == '3':
+    if user_input == '4':
         break
-    user_input = input("What do you want to do?\n1. print all meals\n2. print one type of meal\n3. exit program\n")
+    user_input = input("What do you want to do?\n1. print all meals\n2. print one type of meal\n3. search in price range\n4. exit program\n")
     if user_input == '1':
         print_meals_by_price()
     elif user_input == '2':
@@ -68,6 +68,10 @@ while True:
                 except ValueError:
                     print("That is not an option.")
     elif user_input == '3':
+        min = input("enter the min price, or press enter to skip\n")
+        max = input("enter the max price, or press enter to skip\n")
+        print_meals_in_range(min, max)
+    elif user_input == '4':
         break
     else:
         print("That is not an option.")
