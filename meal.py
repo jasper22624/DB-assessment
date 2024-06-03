@@ -9,7 +9,8 @@ import sqlite3
 def print_meals_by_price():
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
-    cursor.execute('select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id order by foods.price;')
+    query = 'select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id order by foods.price;'
+    cursor.execute(query)
     result = cursor.fetchall()
     print(" __________________________________________________________________________")
     print(f"|{'name':<25} | {'price':<6} | {'special requirements':<20} | {'types':<14}|")
@@ -23,7 +24,8 @@ def print_meals_by_price():
 def print_one_type_by_price(type):
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
-    cursor.execute(f"select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id where type = {type} order by foods.price;")
+    query = f"select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id where type = {type} order by foods.price;"
+    cursor.execute(query)
     result = cursor.fetchall()
     print(" __________________________________________________________________________")
     print(f"|{'name':<25} | {'price':<6} | {'special requirements':<20} | {'types':<14}|")
@@ -37,7 +39,8 @@ def print_one_type_by_price(type):
 def print_meals_in_range(min, max):
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
-    cursor.execute(f"select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id where price <= {max} and price >= {min} order by foods.price;")
+    query = f"select foods.food_name,foods.price,special_reqs.req_name,types.types_type from foods join special_reqs on foods.special_req = special_reqs.req_id join types on foods.type = types.types_id where price <= {max} and price >= {min} order by foods.price;"
+    cursor.execute(query)
     result = cursor.fetchall()
     print(" __________________________________________________________________________")
     print(f"|{'name':<25} | {'price':<6} | {'special requirements':<20} | {'types':<14}|")
