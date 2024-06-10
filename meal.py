@@ -37,15 +37,27 @@ def print_meals_by_price():
 def print_one_type_by_price(type):
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
-    query = f"select foods.food_name,foods.price,types.types_type from foods join types on foods.type = types.types_id where type = {type} order by foods.price;"
+    query = f"select foods.food_id,foods.food_name,foods.price,types.types_type from foods join types on foods.type = types.types_id where type = {type} order by foods.price;"
     cursor.execute(query)
     result = cursor.fetchall()
-    print(" ___________________________________________________")
-    print(f"|{'name':<25} | {'price':<6} | {'types':<14}|")
-    print("|__________________________|________|_______________|")
+    print(" _______________________________________________________________")
+    print(f"|{'name':<25} | {'price':<6} | {'types':<14}| GF  | Veg |")
+    print("|__________________________|________|_______________|_____|_____|")
     for i in result:
-        print(f"|{i[0]:<25} | {i[1]:<6} | {i[2]:<14}|")
-    print("|__________________________|________|_______________|")
+        cursor = db.cursor()
+        query = f'select special_req_id from foods_spe_req where foods_spe_req.foods_id = {i[0]};'
+        cursor.execute(query)
+        special_req = cursor.fetchall()
+        for s in special_req:
+            if 1 in s and 2 in s:
+                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | yes |")
+            elif 1 in s:
+                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | no  |")
+            elif 2 in s:
+                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | yes |")
+            else:
+                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | no  |")
+    print("|__________________________|________|_______________|_____|_____|")
     db.close()  # close the DB that opened
 
 
