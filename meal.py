@@ -17,19 +17,24 @@ def print_meals_by_price():
     print(f"|{'name':<25} | {'price':<6} | {'types':<14}| GF  | Veg |")
     print("|__________________________|________|_______________|_____|_____|")
     for i in result:
+        p = 0
         cursor = db.cursor()
         query = f'select special_req_id from foods_spe_req where foods_spe_req.foods_id = {i[0]};'
         cursor.execute(query)
         special_req = cursor.fetchall()
         for s in special_req:
-            if 1 in s and 2 in s:
-                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | yes |")
-            elif 1 in s:
-                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | no  |")
+            if 1 in s:
+                p += 1
             elif 2 in s:
-                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | yes |")
-            else:
-                print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | no  |")
+                p += 2
+        if p == 1:
+            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | no  |")
+        elif p == 2:
+            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | yes |")
+        elif p == 3:
+            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | yes |")
+        else:
+            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | no  |")
     print("|__________________________|________|_______________|_____|_____|")
     db.close()  # close the DB that opened
 
