@@ -7,12 +7,8 @@ food_id = '0'
 import sqlite3
 
 
-def print_meals_by_price():
+def print_special_req(result):
     db = sqlite3.connect('meal.db')
-    cursor = db.cursor()
-    query = 'select foods.food_id,foods.food_name,foods.price,types.types_type from foods join types on foods.type = types.types_id order by foods.price;'
-    cursor.execute(query)
-    result = cursor.fetchall()
     print(" _______________________________________________________________")
     print(f"|{'name':<25} | {'price':<6} | {'types':<14}| GF  | Veg |")
     print("|__________________________|________|_______________|_____|_____|")
@@ -36,6 +32,15 @@ def print_meals_by_price():
         else:
             print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | no  |")
     print("|__________________________|________|_______________|_____|_____|")
+
+
+def print_meals_by_price():
+    db = sqlite3.connect('meal.db')
+    cursor = db.cursor()
+    query = 'select foods.food_id,foods.food_name,foods.price,types.types_type from foods join types on foods.type = types.types_id order by foods.price;'
+    cursor.execute(query)
+    result = cursor.fetchall()
+    print_special_req(result)
     db.close()  # close the DB that opened
 
 
