@@ -7,27 +7,28 @@ food_id = '0'
 import sqlite3
 
 
-def print_special_req(result):  # The code is too long so I replace them by this function
+def print_special_req(result):
+    '''The code is too long so I replace them by this function'''
     db = sqlite3.connect('meal.db')
     print(" _______________________________________________________________")
     print(f"|{'name':<25} | {'price':<6} | {'types':<14}| GF  | Veg |")
     print("|__________________________|________|_______________|_____|_____|")
     for i in result:
-        p = 0
+        spe = 0
         cursor = db.cursor()
         query = f'select special_req_id from foods_spe_req where foods_spe_req.foods_id = {i[0]};'
         cursor.execute(query)
         special_req = cursor.fetchall()
         for s in special_req:
             if 1 in s:
-                p += 1
+                spe += 1
             elif 2 in s:
-                p += 2
-        if p == 1:
+                spe += 2
+        if spe == 1:
             print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | no  |")
-        elif p == 2:
+        elif spe == 2:
             print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | yes |")
-        elif p == 3:
+        elif spe == 3:
             print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | yes |")
         else:
             print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | no  |")
