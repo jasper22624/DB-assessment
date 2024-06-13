@@ -35,6 +35,7 @@ def print_special_req(result):  # The code is too long so I replace them by this
 
 
 def print_meals_by_price():
+    '''This function is for print out meals order by price'''
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
     query = 'select foods.food_id,foods.food_name,foods.price,types.types_type from foods join types on foods.type = types.types_id order by foods.price;'
@@ -45,6 +46,7 @@ def print_meals_by_price():
 
 
 def print_one_type_by_price(type):
+    '''This function is for print out one type of the meals order by price'''
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
     query = f"select foods.food_id,foods.food_name,foods.price,types.types_type from foods join types on foods.type = types.types_id where type = {type} order by foods.price;"
@@ -55,6 +57,7 @@ def print_one_type_by_price(type):
 
 
 def print_meals_in_range(min, max):
+    '''This function is for print out meals search by a price range'''
     db = sqlite3.connect('meal.db')
     cursor = db.cursor()
     query = f"select foods.food_id,foods.food_name,foods.price,types.types_type from foods join types on foods.type = types.types_id where price <= {max} and price >= {min} order by foods.price;"
