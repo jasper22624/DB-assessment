@@ -7,7 +7,7 @@ food_id = '0'
 import sqlite3
 
 
-def print_special_req(result):
+def print_special_req(result):  # The code is too long so I replace them by this function
     db = sqlite3.connect('meal.db')
     print(" _______________________________________________________________")
     print(f"|{'name':<25} | {'price':<6} | {'types':<14}| GF  | Veg |")
