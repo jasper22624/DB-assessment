@@ -1,10 +1,10 @@
 # 22/05/24 A program read the meal.db  by Japser Guo
 
+# imports
+import sqlite3
 
 user_input = '0'
 food_id = '0'
-# imports
-import sqlite3
 
 
 def print_special_req(result):
@@ -23,7 +23,7 @@ def print_special_req(result):
             if 1 in s:
                 spe += 1
             elif 2 in s:
-                spe += 2
+                spe += 2  # 0: none, 1: GF, 2: Veg, 3: both
         if spe == 1:
             print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | no  |")
         elif spe == 2:
