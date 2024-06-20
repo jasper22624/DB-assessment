@@ -10,9 +10,9 @@ food_id = '0'
 def print_special_req(result):
     '''The code is too long so I replace them by this function'''
     db = sqlite3.connect('meal.db')
-    print(" _______________________________________________________________")
-    print(f"|{'name':<25} | {'price':<6} | {'types':<14}| GF  | Veg |")
-    print("|__________________________|________|_______________|_____|_____|")
+    print(" ________________________________________________________________")
+    print(f"|{'name':<25} | {'price':<7} | {'types':<14}| GF  | Veg |")
+    print("|__________________________|_________|_______________|_____|_____|")
     for i in result:
         spe = 0
         cursor = db.cursor()
@@ -25,14 +25,14 @@ def print_special_req(result):
             elif 2 in s:
                 spe += 2  # 0: none, 1: GF, 2: Veg, 3: both
         if spe == 1:
-            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | no  |")
+            print(f"|{i[1]:<25} | ${i[2]:<6} | {i[3]:<14}| yes | no  |")
         elif spe == 2:
-            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | yes |")
+            print(f"|{i[1]:<25} | ${i[2]:<6} | {i[3]:<14}| no  | yes |")
         elif spe == 3:
-            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| yes | yes |")
+            print(f"|{i[1]:<25} | ${i[2]:<6} | {i[3]:<14}| yes | yes |")
         else:
-            print(f"|{i[1]:<25} | {i[2]:<6} | {i[3]:<14}| no  | no  |")
-    print("|__________________________|________|_______________|_____|_____|")
+            print(f"|{i[1]:<25} | ${i[2]:<6} | {i[3]:<14}| no  | no  |")
+    print("|__________________________|_________|_______________|_____|_____|")
 
 
 def print_meals_by_price():
